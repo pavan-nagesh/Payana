@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: payana
+      POSTGRES_USER: payana
+      POSTGRES_PASSWORD: payana
+    ports: ["5432:5432"]
+    volumes: [payana_pg:/var/lib/postgresql/data]
+  backend:
+    build: ./backend
+    ports: ["8080:8080"]
+    depends_on: [postgres]
+volumes:
+  payana_pg:

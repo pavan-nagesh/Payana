@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f52d5d">
+  <title>Payana — Bengaluru live mobility map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="product-overrides.css">
+  <link rel="stylesheet" href="live-overrides.css">
+  <link rel="stylesheet" href="map-only.css">
+</head>
+<body>
+  <main class="map-app" aria-label="Payana Bengaluru live mobility map">
+    <div id="map" aria-label="Interactive Bengaluru map"></div>
+
+    <div class="map-filters" aria-label="Transport filters">
+      <button id="search-btn" class="map-mode bar-action" aria-label="Open search">⌕ <span>Search</span></button>
+      <span class="live-badge" role="status"><i></i><span id="map-status">Connecting…</span></span>
+      <button class="map-mode active" data-mode="bus">▰ <span>Bus</span></button>
+      <button class="map-mode" data-mode="train">▤ <span>Train</span></button>
+      <button class="map-mode" data-mode="flight">✈ <span>Flight</span></button>
+      <button class="map-mode" data-mode="ride">⌁ <span>Rides</span></button>
+      <button id="filter-btn" class="map-mode filter-action">☷ <span>More</span></button>
+      <button id="layers-btn" class="map-mode bar-action" aria-label="Show map layers">⌗ <span>Layers</span></button>
+      <button id="locate-btn" class="map-mode bar-action" aria-label="Use my location">⌖ <span>Locate</span></button>
+      <button id="reset-map" class="map-mode bar-action" aria-label="Reset map">⌂ <span>Reset</span></button>
+      <button id="map-info" class="map-mode map-info" aria-label="Map data attribution" title="Map data attribution">i</button>
+    </div>
+
+    <section id="search-panel" class="search-panel" aria-hidden="true">
+      <div class="search-panel-head">
+        <div><span class="eyebrow">PAYANA SEARCH</span><h1>Where are you going?</h1></div>
+        <button id="close-search" class="close-button" aria-label="Close search">×</button>
+      </div>
+      <div class="global-search search-field"><span>⌕</span><input id="global-search" autocomplete="off" placeholder="Route, stop, bus number or place"><kbd>/</kbd></div>
+      <div class="search-planner">
+        <label><span>FROM</span><input id="from-input" placeholder="Starting point"></label>
+        <button id="swap-btn" class="swap-button" aria-label="Swap places">↕</button>
+        <label><span>TO</span><input id="to-input" placeholder="Destination"></label>
+        <button id="find-btn" class="primary-action">Find route →</button>
+        <button id="use-location" class="secondary-action">Use my location</button>
+      </div>
+      <div class="mode-tabs" aria-label="Search categories">
+        <button class="mode-tab active" data-mode="bus">Bus</button>
+        <button class="mode-tab" data-mode="train">Train</button>
+        <button class="mode-tab" data-mode="flight">Flight</button>
+        <button class="mode-tab" data-mode="ride">Rides</button>
+        <button class="mode-tab" data-mode="all">All</button>
+      </div>
+      <div class="quick-grid">
+        <button data-quick="nearby">Nearby stops</button><button data-quick="train">Train tracker</button>
+        <button data-quick="flight">Airport board</button><button data-quick="ride">Compare rides</button><button data-quick="ask">Ask Payana</button>
+      </div>
+      <section class="feed-section"><div class="section-head"><h3>City pulse</h3><button id="refresh-btn">Refresh</button></div><div id="feed"></div></section>
+      <span id="service-status" class="status-pill"><i></i> Connecting</span>
+      <button id="theme-toggle" hidden aria-hidden="true">Theme</button>
+    </section>
+
+    <aside id="result-drawer" class="drawer" aria-hidden="true">
+      <div class="drawer-head"><div><span id="drawer-kicker" class="eyebrow"></span><h2 id="drawer-title"></h2></div><button id="close-drawer" class="close-button" aria-label="Close details">×</button></div>
+      <div id="drawer-content"></div>
+    </aside>
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script src="app.js?v=network-data-2"></script>
+</body>
+</html>

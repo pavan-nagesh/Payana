@@ -1,0 +1,2 @@
+.mode-tabs{grid-template-columns:repeat(5,1fr)}
+@media(max-width:520px){.mode-tabs{grid-template-columns:repeat(5,minmax(62px,1fr));overflow:auto}.mode-tab{white-space:nowrap}}
